@@ -1,0 +1,197 @@
+
+      <!DOCTYPE html>
+      <html lang="en">
+        <head>
+          <base href="https://app.bsd.education">
+          <title>Lucid — Wake Up Clear</title>
+          
+          
+          <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" /><link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet" /><link rel="stylesheet" href="style.css" />
+          
+          
+          
+        </head>
+        <body>
+          
+  <div class='app-shell'>
+    <header class='app-header glass'>
+      <div class='brand'>
+        <span class='brand-mark'></span>
+        <span class='brand-name'>Lucid</span>
+      </div>
+      <nav class='app-nav' aria-label='Main navigation'>
+        <button class='nav-btn' data-section='alarm-setup'>Set Alarm</button>
+        <button class='nav-btn' data-section='wake-up-challenge'>Challenge</button>
+        <button class='nav-btn' data-section='morning-victory'>Victory</button>
+        <button class='nav-btn' data-section='clarity-trends'>Trends</button>
+      </nav>
+    </header>
+
+    <main class='app-main'>
+      <section id='alarm-setup' class='app-section' aria-labelledby='alarm-setup-title'>
+        <h2 id='alarm-setup-title'>Alarm Setup</h2>
+        <div class='alarm-dashboard'>
+          <div class='next-alarm-block'>
+            <div class='aura-glow'></div>
+            <div class='next-alarm-card glass-card'>
+              <p class='next-label'>NEXT ALARM</p>
+              <p class='next-time' id='next-alarm-time'>7:30 AM</p>
+              <p class='next-alarm-name' id='next-alarm-name'>Gym Session</p>
+              <span class='ready-badge'>Ready to Rise</span>
+              <button id='test-alarm-btn' class='btn btn-primary wake-now-btn'>🔔 Wake Now</button>
+            </div>
+          </div>
+
+          <div class='upcoming-section glass-card'>
+            <h3>Upcoming Alarms</h3>
+            <ul class='alarm-list' id='alarm-list'></ul>
+            <p class='empty-state hidden' id='alarms-empty'>No alarms yet. Tap the + button to create your first alarm.</p>
+          </div>
+
+          <div class='settings-card glass-card'>
+            <h3>Challenge Difficulty</h3>
+            <div class='segmented' id='difficulty-segmented'>
+              <button class='seg-btn' data-difficulty='Freshman'>Freshman</button>
+              <button class='seg-btn' data-difficulty='Sophomore'>Sophomore</button>
+              <button class='seg-btn' data-difficulty='Junior'>Junior</button>
+              <button class='seg-btn' data-difficulty='Senior'>Senior</button>
+              <button class='seg-btn' data-difficulty='Dean'>Dean</button>
+            </div>
+          </div>
+
+          <div class='settings-card glass-card'>
+            <h3>Wake Theme</h3>
+            <div class='theme-grid' id='theme-grid'></div>
+          </div>
+
+          <div class='settings-card glass-card'>
+            <h3>Repeat Days</h3>
+            <div class='day-toggles' id='day-toggles'>
+              <button class='day-btn' data-day='Mon'>M</button>
+              <button class='day-btn' data-day='Tue'>T</button>
+              <button class='day-btn' data-day='Wed'>W</button>
+              <button class='day-btn' data-day='Thu'>T</button>
+              <button class='day-btn' data-day='Fri'>F</button>
+              <button class='day-btn' data-day='Sat'>S</button>
+              <button class='day-btn' data-day='Sun'>S</button>
+            </div>
+          </div>
+
+          <div class='settings-card glass-card'>
+            <h3>Hard Mode</h3>
+            <div class='hard-mode-row'>
+              <span>Hide emergency snooze</span>
+              <button class='toggle' id='hard-mode-toggle' aria-pressed='false'></button>
+            </div>
+          </div>
+        </div>
+        <button class='fab' id='add-alarm-btn' aria-label='Add Alarm'>+</button>
+      </section>
+
+      <section id='wake-up-challenge' class='app-section hidden' aria-labelledby='wake-up-challenge-title'>
+        <h2 id='wake-up-challenge-title'>Wake-Up Challenge</h2>
+        <div class='challenge-container'>
+          <div class='challenge-stats'>
+            <div class='challenge-stat'>
+              <span class='stat-label'>Time</span>
+              <span class='stat-value' id='challenge-timer'>0:00</span>
+            </div>
+            <div class='challenge-stat'>
+              <span class='stat-label'>Accuracy</span>
+              <span class='stat-value' id='challenge-accuracy'>100%</span>
+            </div>
+            <div class='challenge-stat'>
+              <span class='stat-label'>Pairs</span>
+              <span class='stat-value' id='challenge-pairs'>0/8</span>
+            </div>
+          </div>
+
+          <div class='progress-block'>
+            <div class='progress-label'><span>🧠 Brain Power</span><span id='challenge-progress-label'>0%</span></div>
+            <div class='progress-bar'><div class='progress-fill' id='challenge-progress'></div></div>
+          </div>
+
+          <div class='progress-block'>
+            <div class='progress-label'><span>🔇 Silence Progress</span><span id='silence-progress-label'>0%</span></div>
+            <div class='progress-bar'><div class='progress-fill silence-fill' id='silence-progress'></div></div>
+          </div>
+
+          <div class='wave-container'>
+            <canvas id='volume-wave' width='720' height='160'></canvas>
+          </div>
+
+          <div class='grid-container' id='memory-grid'></div>
+
+          <button id='emergency-snooze' class='snooze-btn'>😴 Emergency Snooze</button>
+        </div>
+      </section>
+
+      <section id='morning-victory' class='app-section hidden' aria-labelledby='morning-victory-title'>
+        <h2 id='morning-victory-title'>Morning Victory</h2>
+        <div class='victory-container'>
+          <div class='victory-card glass-card'>
+            <div id='confetti-container' class='confetti-container'></div>
+            <div class='victory-emoji'>🌅</div>
+            <h3 class='victory-title'>Good Morning!</h3>
+            <p class='victory-subtitle'>You beat the alarm.</p>
+            <div class='victory-stats'>
+              <div class='victory-stat'>
+                <span class='stat-label'>Solve Time</span>
+                <span class='stat-value' id='victory-time'>0:00</span>
+              </div>
+              <div class='victory-stat'>
+                <span class='stat-label'>Accuracy</span>
+                <span class='stat-value' id='victory-accuracy'>100%</span>
+              </div>
+              <div class='victory-stat'>
+                <span class='stat-label'>Streak</span>
+                <span class='stat-value' id='victory-streak'>🔥 7</span>
+              </div>
+            </div>
+            <div class='victory-actions'>
+              <button class='btn btn-primary' id='share-win-btn'>📤 Share Win</button>
+              <button class='btn btn-secondary' id='im-up-btn'>I'm Up</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id='clarity-trends' class='app-section hidden' aria-labelledby='clarity-trends-title'>
+        <h2 id='clarity-trends-title'>Clarity Trends</h2>
+        <div class='trends-container'>
+          <div class='trend-card glass-card'>
+            <h3>Clarity Score</h3>
+            <svg class='line-chart' viewBox='0 0 300 120' preserveAspectRatio='none'>
+              <defs>
+                <linearGradient id='clarityGradient' x1='0' y1='0' x2='1' y2='1'>
+                  <stop offset='0%' stop-color='#7C3AED'/>
+                  <stop offset='100%' stop-color='#FF7847'/>
+                </linearGradient>
+              </defs>
+              <polyline points='0,100 30,90 60,95 90,70 120,75 150,50 180,60 210,35 240,45 270,20 300,25' fill='none' stroke='url(#clarityGradient)' stroke-width='3' stroke-linecap='round'/>
+            </svg>
+          </div>
+          <div class='trend-card glass-card'>
+            <h3>Consistency Heatmap</h3>
+            <div class='heatmap-grid' id='heatmap-grid'></div>
+          </div>
+          <div class='trend-card glass-card'>
+            <h3>Accountability Circle</h3>
+            <ul class='leaderboard' id='leaderboard'></ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class='app-footer glass'>
+      <p>Lucid — wake up clear.</p>
+    </footer>
+  </div>
+  
+
+          
+          <script src="script.js" defer=""></script>
+          
+        </body>
+      </html>
+    
